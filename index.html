@@ -270,7 +270,12 @@
       .main-image-container {
         position: relative;
         overflow: hidden;
+        border-radius: 16px;
         height: 500px;
+      }
+
+      ul {
+        padding-left: 0rem;
       }
 
       .main-image {
@@ -296,9 +301,61 @@
         transition: opacity 0.2s, transform 0.2s;
       }
 
-      .main-image-container:hover .magnifier {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
+      .main-image-container:hover {
+        border: 2px solid #0b5ed7;
+      }
+
+      .brochure-box {
+        background: #fff;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        text-align: left;
+
+        width: 100%;
+      }
+
+      .brochure-box h2 {
+        font-size: 2em;
+        margin-bottom: 20px;
+        color: #333;
+        font-weight: 600;
+      }
+
+      .brochure-box p {
+        font-size: 1em;
+        margin-bottom: 30px;
+        color: #666;
+        line-height: 1.8;
+      }
+
+      .download-button {
+        display: inline-flex;
+        align-items: center;
+        padding: 15px 30px;
+        font-size: 1em;
+        color: #fff;
+        background-color: #0b5ed7;
+        text-decoration: none;
+        border-radius: 50px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(106, 17, 203, 0.3);
+      }
+
+      .download-button i {
+        margin-right: 10px;
+        font-size: 1.2em;
+      }
+
+      .download-button:hover {
+        background-color: #2575fc;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(37, 117, 252, 0.3);
+      }
+
+      .download-button:active {
+        transform: translateY(0);
+        box-shadow: 0 4px 15px rgba(106, 17, 203, 0.3);
       }
 
       /* For Mobile Devices */
@@ -466,6 +523,34 @@
         font-size: 16px;
         line-height: 1.6;
       }
+      .overlay {
+        position: absolute;
+        bottom: -100%; /* Start hidden below the image */
+        left: 0;
+        min-height: 200px;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
+        color: #fff;
+        text-align: center;
+        align-content: center;
+        padding: 10px;
+        transition: bottom 0.3s ease;
+      }
+      .main-image-container:hover .main-image {
+        transform: scale(1.1); /* Zoom effect */
+        filter: brightness(0.8); /* Slightly darken the image */
+      }
+
+      .main-image-container:hover .overlay {
+        bottom: 0; /* Slide up the overlay */
+      }
+      .overlay h3 {
+        color: #fff;
+        font-size: 2rem;
+      }
+      #solid-details2 {
+        display: none;
+      }
     </style>
   </head>
   <body>
@@ -507,19 +592,30 @@
         <div class="product-container">
           <div class="image-slider animate-on-scroll">
             <div class="main-image-container">
-              <img src="Tyre_3_white.jpg" class="main-image" alt="Tyre 1" />
-              <div class="magnifier"></div>
+              <img src="images/solid1.png" class="main-image" alt="Tyre 1" />
+              <div class="overlay">
+                <h3>SOLID RESILIENT TIRES</h3>
+                <!-- Replace with your desired text -->
+              </div>
             </div>
             <div class="thumbnails">
               <img
-                src="Tyre_3_white.jpg"
+                src="images/solid1.png"
                 class="thumbnail active"
+                data-id="solid-details1"
+                onclick="changeImage(this.closest('.product-section'), this)"
+              />
+              <img
+                src="images/solid2.png"
+                data-id="solid-details2"
+                class="thumbnail"
                 onclick="changeImage(this.closest('.product-section'), this)"
               />
             </div>
           </div>
 
           <div
+            id="solid-details1"
             class="product-details animate-on-scroll"
             style="transition-delay: 0.2s"
           >
@@ -561,6 +657,13 @@
                 <h3>Beads</h3>
                 <p>Yes</p>
               </div>
+              <div
+                class="spec-card animate-on-scroll"
+                style="transition-delay: 0.6s"
+              >
+                <h3>Suitable for:</h3>
+                <p>Forklifts, Reach Truck, Ground Support Equipment</p>
+              </div>
             </div>
 
             <ul class="features-list">
@@ -568,17 +671,11 @@
                 class="feature-item animate-on-scroll"
                 style="transition-delay: 0.7s"
               >
-                Maximum stability
+                Maximum stability, safety and durability
               </li>
               <li
                 class="feature-item animate-on-scroll"
                 style="transition-delay: 0.8s"
-              >
-                safety and durability
-              </li>
-              <li
-                class="feature-item animate-on-scroll"
-                style="transition-delay: 0.9s"
               >
                 Long-lasting performance with high loading capacity
               </li>
@@ -587,6 +684,79 @@
                 style="transition-delay: 0.9s"
               >
                 Excellent traction and puncture resistance
+              </li>
+            </ul>
+          </div>
+          <div
+            id="solid-details2"
+            class="product-details animate-on-scroll"
+            style="transition-delay: 0.2s"
+          >
+            <h1 class="product-title">SOLID RESILIENT tyreS</h1>
+            <p class="product-description">
+              The construction of a resilient tyre includes several layers of
+              diƯerent types of rubber compounds. Our solid resilient tyres
+              consist of a tread layer, a middle layer and a base layer with
+              steel bead reinforcements. The benefits include puncture and
+              maintenance free operations, higher life and low cost per hour.
+            </p>
+
+            <div class="spec-grid">
+              <div
+                class="spec-card animate-on-scroll"
+                style="transition-delay: 0.3s"
+              >
+                <h3>tyre Type</h3>
+                <p>Black, Lip Tyre</p>
+              </div>
+              <div
+                class="spec-card animate-on-scroll"
+                style="transition-delay: 0.4s"
+              >
+                <h3>Suitable Rim type</h3>
+                <p>Flat Base</p>
+              </div>
+              <div
+                class="spec-card animate-on-scroll"
+                style="transition-delay: 0.5s"
+              >
+                <h3>No. of Layers</h3>
+                <p>3</p>
+              </div>
+              <div
+                class="spec-card animate-on-scroll"
+                style="transition-delay: 0.6s"
+              >
+                <h3>Beads</h3>
+                <p>Yes</p>
+              </div>
+              <div
+                class="spec-card animate-on-scroll"
+                style="transition-delay: 0.6s"
+              >
+                <h3>Suitable for:</h3>
+                <p>Forklifts</p>
+              </div>
+            </div>
+
+            <ul class="features-list">
+              <li
+                class="feature-item animate-on-scroll"
+                style="transition-delay: 0.7s"
+              >
+                Easy to Fit
+              </li>
+              <li
+                class="feature-item animate-on-scroll"
+                style="transition-delay: 0.8s"
+              >
+                Long-lasting performance with high loading capacity
+              </li>
+              <li
+                class="feature-item animate-on-scroll"
+                style="transition-delay: 0.9s"
+              >
+                Excellent traction
               </li>
             </ul>
           </div>
@@ -1135,6 +1305,24 @@
           </div>
         </div>
       </section>
+      <div class="container">
+        <div class="brochure-box">
+          <h2>Download Our Brochure</h2>
+          <p>
+            Explore our services, products, and solutions in detail. Download
+            our brochure today and take the first step toward achieving your
+            goals.
+          </p>
+          <a
+            href="path/to/your/brochure.pdf"
+            download="Brochure.pdf"
+            class="download-button"
+          >
+            <i class="fas fa-download"></i> Download Brochure
+          </a>
+        </div>
+      </div>
+      <br /><br />
     </div>
     <script>
       document.querySelectorAll(".accordion").forEach((accordion) => {
@@ -1177,6 +1365,30 @@
         thumbnails.forEach((t) => t.classList.remove("active"));
         thumb.classList.add("active");
 
+        const targetId = thumb.dataset.id;
+
+        if (targetId == "solid-details1") {
+          let targetElement1 = document.getElementById(targetId);
+          let targetElement2 = document.getElementById("solid-details2");
+          if (targetElement1) {
+            targetElement1.style.display = "block";
+          }
+          if (targetElement2) {
+            targetElement2.style.display = "none";
+          }
+        }
+
+        if (targetId == "solid-details2") {
+          let targetElement1 = document.getElementById(targetId);
+          let targetElement2 = document.getElementById("solid-details1");
+          if (targetElement1) {
+            targetElement1.style.display = "block";
+          }
+          if (targetElement2) {
+            targetElement2.style.display = "none";
+          }
+        }
+
         mainImage.style.opacity = 0;
         setTimeout(() => {
           mainImage.src = thumb.src;
@@ -1193,35 +1405,35 @@
       const imageContainers = document.querySelectorAll(
         ".main-image-container"
       );
-      imageContainers.forEach((imageContainer) => {
-        const magnifier = imageContainer.querySelector(".magnifier");
-        const mainImage = imageContainer.querySelector(".main-image");
+      // imageContainers.forEach((imageContainer) => {
+      //   const magnifier = imageContainer.querySelector(".magnifier");
+      //   const mainImage = imageContainer.querySelector(".main-image");
 
-        const zoomLevel = 2;
+      //   const zoomLevel = 2;
 
-        imageContainer.addEventListener("mousemove", (e) => {
-          const { left, top, width, height } =
-            imageContainer.getBoundingClientRect();
-          const x = e.clientX - left;
-          const y = e.clientY - top;
+      //   imageContainer.addEventListener("mousemove", (e) => {
+      //     const { left, top, width, height } =
+      //       imageContainer.getBoundingClientRect();
+      //     const x = e.clientX - left;
+      //     const y = e.clientY - top;
 
-          magnifier.style.left = `${x}px`;
-          magnifier.style.top = `${y}px`;
-          magnifier.style.opacity = 1; //Ensure Magnifier is visible on every mouse move
+      //     magnifier.style.left = `${x}px`;
+      //     magnifier.style.top = `${y}px`;
+      //     magnifier.style.opacity = 1; //Ensure Magnifier is visible on every mouse move
 
-          const percentX = (x / width) * 100;
-          const percentY = (y / height) * 100;
+      //     const percentX = (x / width) * 100;
+      //     const percentY = (y / height) * 100;
 
-          mainImage.style.transformOrigin = `${percentX}% ${percentY}%`;
-          mainImage.style.transform = `scale(${zoomLevel})`;
-        });
+      //     mainImage.style.transformOrigin = `${percentX}% ${percentY}%`;
+      //     mainImage.style.transform = `scale(${zoomLevel})`;
+      //   });
 
-        imageContainer.addEventListener("mouseleave", () => {
-          magnifier.style.opacity = 0;
-          mainImage.style.transform = "scale(1)";
-          mainImage.style.transformOrigin = "center center";
-        });
-      });
+      //   imageContainer.addEventListener("mouseleave", () => {
+      //     magnifier.style.opacity = 0;
+      //     mainImage.style.transform = "scale(1)";
+      //     mainImage.style.transformOrigin = "center center";
+      //   });
+      // });
     </script>
   </body>
 </html>
